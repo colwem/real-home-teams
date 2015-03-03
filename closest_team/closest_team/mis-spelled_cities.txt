@@ -1,0 +1,183 @@
+73      Greaterford, Pennsylvania
+206     Golden Valley, New Mexico
+208     Milbrae, California
+375     Pocohontas, Virginia
+434     0 total players, 0 active players
+485     Florissant, Louisiana
+570     Sadwich, Illinois
+593     Mongtomery, Alabama
+766     Bansalem, Pennsylvania
+803     Amonk, New York
+841     Norbone, Missouri
+......1340      Cudahy, Wyoming
+......1877      Rahway, New York
+1945    0 total players, 0 active players
+2009    Mejia, Texas
+.....2807       Trotwood, Illinois
+2872    Fort Mitchell, Arkansas
+.3058   Glendora, Colorado
+3111    Wilton Junction, Iowa
+..3267  Flostraver, Pennsylvania
+..3554  Van Horn, Louisiana
+.....3918       Shoshoni, West Virginia
+3979    Naruna, Wisconsin
+4253    Govnick, Minnesota
+4291    Runnels, Virginia
+4304    Lee's Summitt, Missouri
+4512    Richhill Twp., Pennsylvania
+4561    Andarko, Oklahoma
+4622    Arvada, California
+4657    Menomonie, Michigan
+4769    Cleveland Co., North Carolina
+4849    Boca Raton, Maryland
+4867    New Iberia, Iowa
+4970    San Rafael;Oakdale, Connecticut
+4971    San Rafael;Oakdale, California
+4974    Brockton, Mississippi
+5065    Pilcher, Oklahoma
+5190    Bluff City, Oklahoma
+5221    Highstown, New Jersey
+5292    Paulina, Iowa
+5297    0 total players, 0 active players
+5309    Tooomsuba, Mississippi
+5355    Kenley, North Carolina
+5367    Grenwood, Mississippi
+5433    LaVista, Nebraska
+5479    Balitmore, Maryland
+5516    Caldeonia, Mississippi
+5517    Rimersbutg, Pennsylvania
+5528    Toppahannock, Virginia
+5572    Strake, Florida
+5610    Brown Mills, New Jersey
+5624    Great Mills, Ohio
+5661    North Carrolton, Mississippi
+5701    Cummock, California
+5761    0 total players, 0 active players
+5765    Minden, Arkansas
+5776    New Britain, Vermont
+5786    Blue Isalnd, Illinois
+5894    Amaudville, Louisiana
+5896    Blairstown Twp., New Jersey
+5956    Arvin, Ohio
+6004    Sawnsboro, North Carolina
+6033    Northampton, Florida
+6059    Thomaston, North Carolina
+6062    Perrytown, Texas
+6078    Danvers, Pennsylvania
+6100    Rush Sprngs, Oklahoma
+6109    Camillus, Georgia
+6232    Deefield Beach, Florida
+6262    Pleasanton, Virginia
+6325    Wilmar, Minnesota
+6330    Clarksville, West Virginia
+6381    Battin, Pennsylvania
+6454    Lapper, Michigan
+6474    Gillepie, Illinois
+6495    Clarksburg, Colorado
+6516    Longmont, Kansas
+6523    New Orleans, Mississippi
+6532    New London, Nebraska
+6543    Elderton, Wisconsin
+6576    Rawlings, Wyoming
+6599    Simia, Colorado
+6613    Holtview, California
+6667    West Chester, New York
+6694    Thomasville, New Jersey
+6700    Folkston, California
+6709    Malven, Pennsylvania
+6782    Pittsburgh, Kansas
+6797    Florrisant, Missouri
+6809    Clarkson, Georgia
+6825    Orville, Alabama
+6826    Manchetser, New Hampshire
+6830    Mundelin, Illinois
+6902    Mawlin, Texas
+6940    Lathop, Missouri
+6987    Wesbter, New York
+7002    McCleelandtown, Pennsylvania
+7021    Hilaleah, Florida
+7060    Pochahontas, Iowa
+7116    Ossian, Nebraska
+7130    Hedrick, Oklahoma
+7140    Lynchburgh, Virginia
+7169    Jacksonboro, Texas
+7181    Toana, Virginia
+7192    Shawnee Mission, Kentucky
+7194    Bridgeton, Massachusetts
+7208    Medford, Pennsylvania
+7255    Tillman Co., Oklahoma
+7285    Sarasota, Texas
+7329    Birmingham, Washington
+7336    Manchesrer, New Jersey
+7364    Imperial Beach, Florida
+7505    Fatetteville, North Carolina
+7556    Pfulgerville, Texas
+7612    Framklin, Massachusetts
+7624    Venica, Pennsylvania
+7632    Mishakawa, Indiana
+7650    Lanette, Alabama
+7699    Gwinett Co, Georgia
+7710    Wilmar, New Jersey
+7723    Joy Coy, Colorado
+7731    Clendenon, West Virginia
+7777    Callistoga, California
+7778    Glen Gardener, New Jersey
+7813    Bainbridge, Connecticut
+7840    South Merchantville, New Jersey
+7889    Milburn, New Jersey
+7899    Lansford, California
+7941    Steeltown, Pennsylvania
+7961    El Maton, Texas
+7965    Tredyffrin Twp., Pennsylvania
+7975    Asheville, Ohio
+7988    Irondequoi, New York
+8069    Sanford, South Carolina
+8142    Oelweinm, Iowa
+8150    Baltimroe, Maryland
+8179    Lyndale, Georgia
+8181    Potos, Missouri
+8290    Texarkaba, Texas
+8291    Kansas City, Maryland
+8302    Greenbelt, North Carolina
+8303    Hamstead, North Carolina
+8326    0 total players, 0 active players
+8328    Boylstown, Massachusetts
+8366    Hoopestown, Illinois
+8370    Bald Spring, Texas
+8396    Arden Hils, Minnesota
+8407    Metheun, Massachusetts
+8492    Mt. Healthy, Ohio
+8523    Crawfordsville, Florida
+8566    Chauney, Ohio
+8615    Millcreek Twp., Utah
+8633    Sierre Madre, California
+8809    Vickesville, Virginia
+8836    0 total players, 0 active players
+8877    Clarkside, Mississippi
+8892    0 total players, 0 active players
+8923    Two Harbors, Michigan
+8964    Vernado, California
+8996    Mt. Morris Township, Michigan
+9004    Merrysville, Louisiana
+9023    Manssas, Colorado
+9052    Sunnydale, Arizona
+9077    Huntingdon, New York
+9085    Dearborn, Wisconsin
+9091    LaQuinta, California
+9109    Wellaman, Louisiana
+9132    Kemersville, North Carolina
+9159    Fort Mead, Texas
+9185    0 total players, 0 active players
+9223    Fort Worth, Indiana
+9244    Suffield, New York
+9315    Coal Cemter, Pennsylvania
+9338    0 total players, 0 active players
+9383    Kapolie, Hawaii
+9392    Starkville, Virginia
+9479    Mechanisburg, Pennsylvania
+9497    Parkerburg, Iowa
+9502    Summitt, Mississippi
+9559    Fairax, Alabama
+9566    Runnels, Iowa
+9599    Blakley, Georgia
+9627    0 total players, 0 active players

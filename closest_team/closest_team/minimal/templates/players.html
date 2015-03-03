@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>page</title>
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+  <meta charset="utf-8" />
+  <style>
+    #map { height: 600px; }
+  </style>
+</head>
+<body>
+  <header>
+    Nothing to see here
+  </header>
+  <div id="latlon">
+  </div>
+  <div id="map"></div>
+  <footer>
+    Nothing here either
+  </footer>
+  <div id="data" style="display:none">
+    <div id="players" style="display:none">
+      {% for p in players %}
+        <div data-name="{{p.name}}" 
+          data-latitude="{{p.latitude}}"
+          data-longitude="{{p.longitude}}" 
+          data-closest-team="{{p.closest_team}}"
+          data-color="red">
+        </div>
+      {% endfor %}
+    </div>
+    <div id="stadiums" style="display:none">
+      {% for s in stadiums %}
+        <div data-name="{{s.name}}" 
+          data-latitude="{{s.latitude}}"
+          data-longitude="{{s.longitude}}"
+          data-color="blue">
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <script>
+    $(function() {
+      var map = L.map('map').setView([39.77477, -97.03125], 4);
+
+      var tiles = L.tileLayer('http://oatile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg', {
+              attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency',
+              subdomains: '1234'
+      });
+      tiles.addTo(map);
+      var latlon = $('#latlon').text(map.getCenter());
+      map.on('move', function(e) {
+        latlon.text(map.getCenter());
+      });
+      $('#players div').each(function(i, p){
+        var marker = L.circleMarker([p.dataset.latitude, p.dataset.longitude] , {
+          stroke: false,
+          color: p.dataset.color,
+          fill: true,
+          fillColor: p.dataset.color,
+          fillOpacity: 0.9,
+          radius: 3});
+        // marker.bindPopup("blah").openPopup({latlng: marker._latlng}); 
+        marker.addTo(map);
+      });
+
+      $('#stadiums div').each(function(i, s){
+        var marker = L.circleMarker([s.dataset.latitude, s.dataset.longitude], {
+          stroke: false,
+          color: s.dataset.color,
+          fill: true,
+          fillColor: s.dataset.color,
+          fillOpacity: 0.9,
+          radius: 10});
+        marker.addTo(map);
+      });
+    });
+  </script>
+</body>
+</html>
