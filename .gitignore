@@ -56,3 +56,10 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# Project specific
+*.err
+NUL
+csv/
+.scrapy/
+Session.vim

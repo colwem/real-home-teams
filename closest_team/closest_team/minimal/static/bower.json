@@ -22,6 +22,7 @@
     "d3-tip": "~0.6.6",
     "less": "~2.4.0",
     "topojson": "~1.6.18",
-    "kube": "imperavi/kube#master"
+    "kube": "imperavi/kube#master",
+    "Leaflet.MousePosition": "ardhi/Leaflet.MousePosition"
   }
 }
