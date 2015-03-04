@@ -30,12 +30,12 @@ def player():
 @app.route('/players.json')
 def players():
     p, hs = m.PlayersT, m.HighSchoolT
-    q = (p.select( p.name, p.weighted_av, hs.latitude, hs.longitude)
+    q = (p.select(p.name, p.weighted_av, hs.latitude, hs.longitude)
          .join(hs)
-         .where( hs.latitude != None, hs.longitude != None, p.weighted_av > 0.1)
+         .where(hs.latitude != None, hs.longitude != None, p.weighted_av > 0.1)
          .order_by(p.weighted_av)
          .naive())
-         # .limit(1000))
+         #.limit(1000))
 
     json = [{"name": p.name,
              "weighted_av": p.weighted_av,
