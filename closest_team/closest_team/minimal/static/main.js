@@ -3,9 +3,12 @@
 var mapid = "mapbox.light",
     access_token = "pk.eyJ1IjoiY29sd2VtIiwiYSI6InpSV2NIT3MifQ.yiyrrpmxhNt6DJZDynUdmA";
 
+var player_tooltip = d3.select("body")
+    .append("div")
+    .attr("id", "player-tooltip");
+
 var width = 960,
-    height = 500,
-    prefix = prefixMatch(["webkit", "ms", "Moz", "O"]);
+    height = 500;
 
 var tile = d3.geo.tile()
     .size([width, height]);
@@ -21,7 +24,7 @@ var tilePath = d3.geo.path()
 
 var zoom = d3.behavior.zoom()
     .scale(projection.scale() * 2 * Math.PI)
-    .scaleExtent([1 << 11, 1 << 17])
+    .scaleExtent([1 << 10, 1 << 23])
     .translate(projection([-100, 40.7142]).map(function(x) { return -x; }))
     .on("zoom", zoomed);
 
@@ -46,7 +49,7 @@ var player_circles = svg
 var stadium_logos = svg
   .append("g")
   .attr("id", "stadiums")
-  .selectAll(".stadium")
+  .selectAll(".stadium");
 
 zoomed();
 
@@ -73,15 +76,6 @@ d3.json( "players.json", function(error, players) {
 function ready(error, players, stadiums) {
   stadiums = stadiums.stadiums;
   players = players.players;
-  
-
-  // var stadium_tip = d3.tip()
-    // .attr('class', 'd3-tip')
-    // .offset([0, 0])
-    // .html(function(d, i) {
-        // return "<strong>Name</strong> <span style='color:red'>" + stadiums[i].name + "</span>";
-    // });
-  // svg.call(stadium_tip);
 
   var delaunay = d3.geo.delaunay(stadiums.map(function(d) { 
             return d.coordinates; 
@@ -102,8 +96,10 @@ function ready(error, players, stadiums) {
   player_circles
     .data(players)
     .enter().insert("circle")
-    .attr("class", "player");
-  
+    .attr("class", "player")
+    .on("mouseover", playerMouseover)
+    .on("mouseout", playerMouseout);
+
   player_circles = d3.selectAll(".player");
 
   stadium_logos
@@ -199,30 +195,26 @@ function zoomed() {
 
 }
 
-function mousemoved() {
-  info.text(formatLocation(projection.invert(d3.mouse(this)), zoom.scale()));
+function playerMouseover(d) {
+
+  player_tooltip
+    .style("display", "inline-block");
+  player_tooltip
+    .transition()
+    .duration(100)
+    .style("opacity", 0.9);
+  player_tooltip.html(d.name)
+    .style("left", d3.event.pageX - 100 + "px")
+    .style("top", d3.event.pageY - 40 + "px");
 }
 
-function matrix3d(scale, translate) {
-  var k = scale / 256, r = scale % 1 ? Number : Math.round;
-  return "matrix3d(" + [k, 0, 0, 0, 0, k, 0, 0, 0, 0, k, 0, r(translate[0] * scale), r(translate[1] * scale), 0, 1 ] + ")";
+function playerMouseout(d) {
+  player_tooltip
+    .transition()
+    .duration(100)
+    .style("opacity", 0)
+    .style("display", "none");
 }
-
-function prefixMatch(p) {
-  var i = -1, n = p.length, s = document.body.style;
-  while (++i < n) if (p[i] + "Transform" in s) return "-" + p[i].toLowerCase() + "-";
-  return "";
-}
-
-function formatLocation(p, k) {
-  var format = d3.format("." + Math.floor(Math.log(k) / 2 - 2) + "f");
-  return (p[1] < 0 ? format(-p[1]) + "°S" : format(p[1]) + "°N") + " " +
-    (p[0] < 0 ? format(-p[0]) + "°W" : format(p[0]) + "°E");
-}
-  // var scale = d3.event.scale;
-  // player_tip.offset(function() {
-    // return [this.getBBox().height / 2 / scale, 0];
-  // });
 
 })();
 
