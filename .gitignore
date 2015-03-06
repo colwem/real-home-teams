@@ -63,3 +63,4 @@ NUL
 csv/
 .scrapy/
 Session.vim
+ignore/

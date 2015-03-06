@@ -23,6 +23,7 @@
     "less": "~2.4.0",
     "topojson": "~1.6.18",
     "kube": "imperavi/kube#master",
-    "Leaflet.MousePosition": "ardhi/Leaflet.MousePosition"
+    "Leaflet.MousePosition": "ardhi/Leaflet.MousePosition",
+    "d3-plugins": "d3/d3-plugins"
   }
 }
