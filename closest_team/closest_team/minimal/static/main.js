@@ -132,7 +132,6 @@ function zoomed() {
     // .attr("height", h)
     // .attr("width", w);
 
-
   var tiles = tile
     .scale(zoom.scale())
     .translate(zoom.translate())
