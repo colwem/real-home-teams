@@ -303,6 +303,7 @@ class HighSchoolT(BaseModel):
     name = CharField(null=True)
     city = CharField(null=True)
     state = CharField(null=True)
+    full_address = CharField(null=True)
     country = CharField(null=True)
     pfr_high_school_id = CharField(null=True, unique=True)
     latitude = FloatField(null=True)
