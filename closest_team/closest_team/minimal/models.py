@@ -333,6 +333,7 @@ class PlayersT(BaseModel):
     url = CharField(null=True)
     birthday_date = DateField(null=True)
     weighted_av = FloatField(null=True)
+    pos = CharField(null=True)
 
     class Meta:
         db_table = 'players_t'

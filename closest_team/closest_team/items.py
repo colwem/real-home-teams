@@ -34,3 +34,10 @@ class PlayerSeasonItem(Item):
     def __setitem__(self, key, value):
         self._values[key] = value
         self.fields[key] = {}
+
+
+class PlayerPosItem(Item):
+
+    def __setitem__(self, key, value):
+        self._values[key] = value
+        self.fields[key] = {}
