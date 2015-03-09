@@ -1,0 +1,60 @@
+<div id="{{s.abbr()}}-tip" class="best-team">
+  <div class="close">
+    x
+  </div>
+  <div class="header">
+    <div class="stadium-name">
+      {{s.name}}
+    </div>
+  </div>
+  <hr/>
+  <div class="units-container">
+  {% for pos in ['QB', 'WR', 'RB', 'T', 'G', 'C'] %}
+    <div class="units-row end">
+      <div class="unit-10 col">
+        <div class="units-row end">
+          <div class="unit-100 pos col2">
+            {{pos}}
+          </div>
+        </div>
+      </div>
+      {% for p in s.best_players_at(pos) %}
+        <div class="unit-30 col">
+          <div class="units-row end">
+            <div class="unit-80 name col2">
+              {{p.name}}
+            </div>
+            <div class="unit-20 av col2">
+              {{p.weighted_av | float | round(2)}}
+            </div>
+          </div>  
+        </div>
+      {% endfor %}
+    </div>
+  {% endfor %}
+  <hr/>
+  {% for pos in ['DE', 'DT', 'CB', 'SS', 'FS'] %}
+    <div class="units-row end">
+      <div class="unit-10 col">
+        <div class="units-row end">
+          <div class="unit-100 pos col2">
+            {{pos}}
+          </div>
+        </div>
+      </div>
+      {% for p in s.best_players_at(pos) %}
+        <div class="unit-30 col">
+          <div class="units-row end">
+            <div class="unit-80 name col2">
+              {{p.name}}
+            </div>
+            <div class="unit-20 av col2">
+              {{p.weighted_av | float | round(2)}}
+            </div>
+          </div>  
+        </div>
+      {% endfor %}
+    </div>
+  {% endfor %}
+  </div>
+</div>

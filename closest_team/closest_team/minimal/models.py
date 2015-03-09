@@ -23,6 +23,19 @@ class Stadium(BaseModel):
     class Meta:
         db_table = 'stadiums'
 
+    def best_players_at(self, pos):
+        q = (StadiumPlayerPosition
+                .select()
+                .join(Position)
+                .where(
+                    (StadiumPlayerPosition.stadium == self.stadium) &
+                    (Position.name == pos))
+                .order_by(StadiumPlayerPosition.order.asc()))
+        return [spp.player_t for spp in q]
+
+    def abbr(self):
+        return Team.select().where(Team.stadium == self.stadium)[0].abbr
+
 
 class Team(BaseModel):
     team = PrimaryKeyField(db_column='team_id')

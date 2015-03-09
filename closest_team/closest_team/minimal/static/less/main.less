@@ -1,9 +1,13 @@
-
+/* vim: sw=2 
+ */
 /* @import url(maps.css);  */
+@best-bg: steelblue;
+@height: 500px;
 
 #map {
-  height: 500px;
+  height: @height;
   width: 960px;
+  position: relative;
 }
 
 path {
@@ -80,4 +84,76 @@ path {
   -webkit-box-shadow: 1px 1px 4px 0 rgba(0,0,0,0.2) ;
   box-shadow: 1px 1px 4px 0 rgba(0,0,0,0.2) ;
   text-shadow: 1px 1px 0 rgba(0,0,0,0.25) ;
+}
+
+
+
+@stadium-width: 500px;
+.best-team {
+  display: none;
+  width: @stadium-width;
+  height: 100%;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  position: absolute;
+  border: none;
+  -webkit-border-radius: 2px;
+  font: normal 8pt/1 Verdana, Geneva, sans-serif;
+  color: rgba(216,216,216,1);
+  background:  @best-bg;
+  -webkit-box-shadow: 1px 1px 4px 0 rgba(0,0,0,0.2) ;
+  box-shadow: 10px 0px 20px -10px rgba(0,0,0,0.9) ;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.25) ;
+  /* margin: 0.5em; */
+  .header {
+    height: 50px;
+    text-align: center;
+    .stadium-name {
+      font-size: 16pt;
+    }
+    -webkit-box-shadow: 1px 1px 4px 0 rgba(0,0,0,0.2) ;
+    box-shadow: 0px 3px 2px 0 rgba(0,0,0,0.2) ;
+    padding: 0.5em;
+  }
+  .row {
+    /* margin: 2px; */
+  }
+  .col {
+    padding: 2px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.25) ;
+  }
+  .col2 {
+    padding: 0.3em; 
+    -webkit-box-shadow: 1px 1px 4px 0 rgba(0,0,0,0.2) ;
+    box-shadow: 1px 1px 5px 0 rgba(0,0,0,0.2) ;
+  }
+  .pos {
+    text-align: left;
+    background: darken(@best-bg, 10%);
+  }
+  .name {
+    text-align: center;
+    background: darken(@best-bg, 20%);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .av {
+    text-align: right;
+    background: darken(@best-bg, 20%);
+  }
+  p {
+    margin-bottom: 0px;
+  }
+  .units-padding {
+    padding: 0.5em;
+  }
+  .close {
+    position: absolute;
+    top: 10px;
+    left: @stadium-width - 20px;
+    cursor: pointer;
+  }
 }

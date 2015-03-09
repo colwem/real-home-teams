@@ -1,6 +1,5 @@
 from scrapy.selector import Selector
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
-# from scrapy.contrib.linkextractors.lxmlhtml import LxmlLinkExtractor
 from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.http import Request
 from scrapy.shell import inspect_response
@@ -8,6 +7,7 @@ from closest_team.items import *
 from collections import defaultdict
 import re
 
+# run scrapy
 
 def merged(d1, d2):
     copied = d1.copy()
@@ -93,6 +93,3 @@ class PlayerSeasons(CrawlSpider):
 
             yield item
 
-
-# for getting the lat long of every players school
-# b = "http://nominatim.openstreetmap.org/search/{},{}?format=xml&limit=1".format('city', 'state')

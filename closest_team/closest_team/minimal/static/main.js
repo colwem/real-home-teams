@@ -1,4 +1,5 @@
 (function(){
+// vim: sw=2 
 
 var mapid = "mapbox.light",
     access_token = "pk.eyJ1IjoiY29sd2VtIiwiYSI6InpSV2NIT3MifQ.yiyrrpmxhNt6DJZDynUdmA";
@@ -30,7 +31,8 @@ var zoom = d3.behavior.zoom()
 
 var path = d3.geo.path().projection(projection);
 
-var svg = d3.select("#map").append('svg')
+var map = d3.select("#map");
+var svg = map.append('svg')
   .attr("width", width)
   .attr("height", height);
 
@@ -108,7 +110,8 @@ function ready(error, players, stadiums) {
     .attr("class", "stadium")
     .attr("xlink:href", function(d) {
       return "static/logos/" + d.abbr + "_logo.svg";
-    });
+    })
+    .on("click", stadiumClick);
 
   stadium_logos = d3.selectAll(".stadium");
 
@@ -205,6 +208,25 @@ function playerMouseover(d) {
   player_tooltip.html(d.name)
     .style("left", d3.event.pageX - 100 + "px")
     .style("top", d3.event.pageY - 40 + "px");
+}
+
+var block;
+function stadiumClick(d) {
+  if( block ) {
+    block.style('display', 'none');
+  }
+  block = d3.select('#' + d.abbr + '-tip');
+  block
+    .style('display', 'block')
+    .style('top', '0px');
+
+  block.select('.close')
+    .on('click', stadiumClose);
+  map.node().appendChild(block.node());
+}
+
+function stadiumClose(d) {
+  block.style('display', 'none');
 }
 
 function playerMouseout(d) {

@@ -16,6 +16,7 @@ set pos = upper(pos);
 insert into positions (name) values
 ('DE'),
 ('DT'),
+('LB'),
 ('CB'),
 ('SS'),
 ('FS'),
