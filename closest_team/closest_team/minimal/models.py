@@ -12,262 +12,6 @@ class BaseModel(Model):
         database = database
 
 
-class Defense(BaseModel):
-    age = IntegerField(null=True)
-    av = DecimalField(null=True)
-    def_int = IntegerField(null=True)
-    def_int_long = IntegerField(null=True)
-    def_int_td = IntegerField(null=True)
-    def_int_yds = IntegerField(null=True)
-    defense = PrimaryKeyField(db_column='defense_id')
-    fumbles = IntegerField(null=True)
-    fumbles_forced = IntegerField(null=True)
-    fumbles_rec = IntegerField(null=True)
-    fumbles_rec_td = IntegerField(null=True)
-    fumbles_rec_yds = IntegerField(null=True)
-    g = IntegerField(null=True)
-    gs = IntegerField(null=True)
-    pass_defended = IntegerField(null=True)
-    player = CharField(db_column='player_id', null=True)
-    pos = TextField(null=True)
-    sacks = DecimalField(null=True)
-    safety_md = IntegerField(null=True)
-    tackles_assists = IntegerField(null=True)
-    tackles_solo = IntegerField(null=True)
-    team = TextField(null=True)
-    uniform_number = IntegerField(null=True)
-    year = IntegerField(db_column='year_id', null=True)
-
-    class Meta:
-        db_table = 'defense'
-
-
-class HofPlayers(BaseModel):
-    rk = IntegerField(db_column='Rk', null=True)
-    career_av = IntegerField(db_column='career_AV', null=True)
-    first_team_all_pros = IntegerField(null=True)
-    games = IntegerField(null=True)
-    inducted = IntegerField(null=True)
-    name = CharField(null=True)
-    passing_attempts = IntegerField(null=True)
-    passing_completions = IntegerField(null=True)
-    passing_interceptions = IntegerField(null=True)
-    passing_long = IntegerField(null=True)
-    passing_tds = IntegerField(null=True)
-    passing_yards = IntegerField(null=True)
-    played_from = IntegerField(null=True)
-    played_to = IntegerField(null=True)
-    position = CharField(null=True)
-    pro_bowls = IntegerField(null=True)
-    receiving_long = IntegerField(null=True)
-    receiving_tds = IntegerField(null=True)
-    receiving_yards = IntegerField(null=True)
-    receptions = IntegerField(null=True)
-    rushing_attempts = IntegerField(null=True)
-    rushing_long = IntegerField(null=True)
-    rushing_tds = IntegerField(null=True)
-    rushing_yards = IntegerField(null=True)
-    sacked = IntegerField(null=True)
-    sacked_yards = IntegerField(null=True)
-    starts = IntegerField(null=True)
-
-    class Meta:
-        db_table = 'hof_players'
-
-
-class Madden(BaseModel):
-    acceleration = IntegerField(null=True)
-    agility = IntegerField(null=True)
-    awareness = IntegerField(null=True)
-    breaktackle = IntegerField(null=True)
-    carrying = IntegerField(null=True)
-    catching = IntegerField(null=True)
-    firstname = CharField()
-    jerseynum = IntegerField()
-    jumping = IntegerField(null=True)
-    kickaccuracy = IntegerField(null=True)
-    kickpower = IntegerField(null=True)
-    lastname = CharField()
-    overallrating = IntegerField()
-    passblock = IntegerField(null=True)
-    position = CharField()
-    runblock = IntegerField(null=True)
-    speed = IntegerField(null=True)
-    strength = IntegerField(null=True)
-    tackle = IntegerField(null=True)
-    throwaccuracy = IntegerField(null=True)
-    throwpower = IntegerField(null=True)
-
-    class Meta:
-        db_table = 'madden'
-
-
-class MaddenRatings(BaseModel):
-    acceleration = IntegerField(null=True)
-    agility = IntegerField(null=True)
-    awareness = IntegerField(null=True)
-    breaktackle = IntegerField(null=True)
-    carrying = IntegerField(null=True)
-    catching = IntegerField(null=True)
-    firstname = CharField()
-    jerseynum = IntegerField()
-    jumping = IntegerField(null=True)
-    kickaccuracy = IntegerField(null=True)
-    kickpower = IntegerField(null=True)
-    lastname = CharField()
-    madden_rating = PrimaryKeyField(db_column='madden_rating_id')
-    overallrating = IntegerField()
-    passblock = IntegerField(null=True)
-    position = CharField()
-    runblock = IntegerField(null=True)
-    speed = IntegerField(null=True)
-    strength = IntegerField(null=True)
-    tackle = IntegerField(null=True)
-    team = CharField()
-    throwaccuracy = IntegerField(null=True)
-    throwpower = IntegerField(null=True)
-    year = IntegerField()
-
-    class Meta:
-        db_table = 'madden_ratings'
-
-
-class MockDraftPicks(BaseModel):
-    mock_draft = IntegerField(db_column='mock_draft_id')
-    mock_draft_pick = PrimaryKeyField(db_column='mock_draft_pick_id')
-    name = CharField(null=True)
-    position = CharField(null=True)
-    rank = IntegerField()
-    school = CharField(null=True)
-    team = CharField(null=True)
-    trade = CharField(null=True)
-
-    class Meta:
-        db_table = 'mock_draft_picks'
-
-
-class MockDrafts(BaseModel):
-    date = DateField(null=True)
-    mock_draft = PrimaryKeyField(db_column='mock_draft_id')
-    mocker = IntegerField(db_column='mocker_id', null=True)
-    source = TextField(null=True)
-    source_file = TextField(null=True)
-
-    class Meta:
-        db_table = 'mock_drafts'
-
-
-class Mockers(BaseModel):
-    email = CharField(null=True)
-    mocker = PrimaryKeyField(db_column='mocker_id')
-    name = CharField(null=True)
-    publication = CharField(null=True)
-    twitter = CharField(null=True)
-
-    class Meta:
-        db_table = 'mockers'
-
-
-class NepMadden2005(BaseModel):
-    acceleration = IntegerField(null=True)
-    agility = IntegerField(null=True)
-    awareness = IntegerField(null=True)
-    breaktackle = IntegerField(null=True)
-    carrying = IntegerField(null=True)
-    catching = IntegerField(null=True)
-    firstname = CharField()
-    jerseynum = IntegerField()
-    jumping = IntegerField(null=True)
-    kickaccuracy = IntegerField(null=True)
-    kickpower = IntegerField(null=True)
-    lastname = CharField()
-    overallrating = IntegerField()
-    passblock = IntegerField(null=True)
-    position = CharField()
-    runblock = IntegerField(null=True)
-    speed = IntegerField(null=True)
-    strength = IntegerField(null=True)
-    tackle = IntegerField(null=True)
-    throwaccuracy = IntegerField(null=True)
-    throwpower = IntegerField(null=True)
-
-    class Meta:
-        db_table = 'nep_madden_2005'
-
-
-class Passing(BaseModel):
-    age = IntegerField(null=True)
-    av = IntegerField(null=True)
-    comebacks = IntegerField(null=True)
-    g = IntegerField(null=True)
-    gs = IntegerField(null=True)
-    gwd = IntegerField(null=True)
-    pass_adj_net_yds_per_att = DecimalField(null=True)
-    pass_adj_yds_per_att = DecimalField(null=True)
-    pass_att = IntegerField(null=True)
-    pass_cmp = IntegerField(null=True)
-    pass_cmp_perc = DecimalField(null=True)
-    pass_int = IntegerField(null=True)
-    pass_int_perc = DecimalField(null=True)
-    pass_long = IntegerField(null=True)
-    pass_net_yds_per_att = DecimalField(null=True)
-    pass_rating = DecimalField(null=True)
-    pass_sacked = IntegerField(null=True)
-    pass_sacked_perc = DecimalField(null=True)
-    pass_sacked_yds = IntegerField(null=True)
-    pass_td = IntegerField(null=True)
-    pass_td_perc = DecimalField(null=True)
-    pass_yds = IntegerField(null=True)
-    pass_yds_per_att = DecimalField(null=True)
-    pass_yds_per_cmp = DecimalField(null=True)
-    pass_yds_per_g = DecimalField(null=True)
-    passing = PrimaryKeyField(db_column='passing_id')
-    player = CharField(db_column='player_id', null=True)
-    pos = TextField(null=True)
-    qb_rec = TextField(null=True)
-    qbr = DecimalField(null=True)
-    team = TextField(null=True)
-    uniform_number = IntegerField(null=True)
-    year = IntegerField(db_column='year_id', null=True)
-
-    class Meta:
-        db_table = 'passing'
-
-
-class PassingAdvanced(BaseModel):
-    age = IntegerField(null=True)
-    g = IntegerField(null=True)
-    gs = IntegerField(null=True)
-    pass_adj_net_yds_per_att_index = IntegerField(null=True)
-    pass_adj_yds_per_att_index = IntegerField(null=True)
-    pass_att = IntegerField(null=True)
-    pass_cmp_perc_index = IntegerField(null=True)
-    pass_int_perc_index = IntegerField(null=True)
-    pass_net_yds_per_att_index = IntegerField(null=True)
-    pass_rating_index = IntegerField(null=True)
-    pass_sacked_perc_index = IntegerField(null=True)
-    pass_td_perc_index = IntegerField(null=True)
-    pass_yds_per_att_index = IntegerField(null=True)
-    passing_advanced = PrimaryKeyField(db_column='passing_advanced_id')
-    player = CharField(db_column='player_id', null=True)
-    pos = TextField(null=True)
-    qb_rec = TextField(null=True)
-    team = TextField(null=True)
-    uniform_number = IntegerField(null=True)
-    year = IntegerField(db_column='year_id', null=True)
-
-    class Meta:
-        db_table = 'passing_advanced'
-
-
-class Players(BaseModel):
-    id = CharField(primary_key=True)
-    name = CharField(null=True)
-
-    class Meta:
-        db_table = 'players'
-
-
 class Stadium(BaseModel):
     stadium = PrimaryKeyField(db_column='stadium_id')
     name = CharField(null=True)
@@ -292,6 +36,14 @@ class Team(BaseModel):
 
     class Meta:
         db_table = 'teams'
+
+
+class Position(BaseModel):
+    position = PrimaryKeyField(db_column='position_id')
+    name = CharField(null=True)
+
+    class Meta:
+        db_table = 'positions'
 
 
 class HighSchoolT(BaseModel):
@@ -339,181 +91,15 @@ class PlayersT(BaseModel):
         db_table = 'players_t'
 
 
-class Ratings(BaseModel):
-    name = CharField()
-    release_date = DateField()
+class StadiumPlayerPosition(BaseModel):
+    stadium_player_position = PrimaryKeyField(db_column='stadium_player_position_id')
+    player_t = ForeignKeyField(PlayersT)
+    stadium = ForeignKeyField(Stadium)
+    position = ForeignKeyField(Position)
+    order = IntegerField(null=True, db_column='ord')
 
     class Meta:
-        db_table = 'ratings'
-
-
-class RushingAndReceiving(BaseModel):
-    age = IntegerField(null=True)
-    fumbles = IntegerField(null=True)
-    g = IntegerField(null=True)
-    gs = IntegerField(null=True)
-    player = CharField(db_column='player_id', null=True)
-    pos = TextField(null=True)
-    rec = IntegerField(null=True)
-    rec_long = IntegerField(null=True)
-    rec_per_g = DecimalField(null=True)
-    rec_td = IntegerField(null=True)
-    rec_yds = IntegerField(null=True)
-    rec_yds_per_g = DecimalField(null=True)
-    rec_yds_per_rec = DecimalField(null=True)
-    rush_att = IntegerField(null=True)
-    rush_att_per_g = DecimalField(null=True)
-    rush_long = IntegerField(null=True)
-    rush_receive_td = IntegerField(null=True)
-    rush_td = IntegerField(null=True)
-    rush_yds = IntegerField(null=True)
-    rush_yds_per_att = DecimalField(null=True)
-    rush_yds_per_g = DecimalField(null=True)
-    rushing_and_receiving = PrimaryKeyField(db_column='rushing_and_receiving_id')
-    team = TextField(null=True)
-    uniform_number = IntegerField(null=True)
-    yds_from_scrimmage = IntegerField(null=True)
-    year = IntegerField(db_column='year_id', null=True)
-
-    class Meta:
-        db_table = 'rushing_and_receiving'
-
-
-class Salary(BaseModel):
-    cap = DecimalField(null=True)
-    name = CharField()
-    position = CharField()
-    roster_bonus = DecimalField(null=True)
-    salary = DecimalField(null=True)
-    salary = PrimaryKeyField(db_column='salary_id')
-    signing_bonus = DecimalField(null=True)
-    team = CharField()
-    year = IntegerField()
-
-    class Meta:
-        db_table = 'salary'
-
-
-class SalaryData(BaseModel):
-    name = CharField(db_column='Name')
-    pos = CharField(db_column='POS')
-    _2006_cap = DecimalField(db_column='_2006_Cap', null=True)
-    _2006_rb = DecimalField(db_column='_2006_RB', null=True)
-    _2006_sb = DecimalField(db_column='_2006_SB', null=True)
-    _2006_salary = DecimalField(db_column='_2006_Salary', null=True)
-    _2007_cap = DecimalField(db_column='_2007_Cap', null=True)
-    _2007_rb = DecimalField(db_column='_2007_RB', null=True)
-    _2007_sb = DecimalField(db_column='_2007_SB', null=True)
-    _2007_salary = DecimalField(db_column='_2007_Salary', null=True)
-    _2008_cap = DecimalField(db_column='_2008_Cap', null=True)
-    _2008_rb = DecimalField(db_column='_2008_RB', null=True)
-    _2008_sb = DecimalField(db_column='_2008_SB', null=True)
-    _2008_salary = DecimalField(db_column='_2008_Salary', null=True)
-    _2009_cap = DecimalField(db_column='_2009_Cap', null=True)
-    _2009_rb = DecimalField(db_column='_2009_RB', null=True)
-    _2009_sb = DecimalField(db_column='_2009_SB', null=True)
-    _2009_salary = DecimalField(db_column='_2009_Salary', null=True)
-    _2010_cap = DecimalField(db_column='_2010_Cap', null=True)
-    _2010_rb = DecimalField(db_column='_2010_RB', null=True)
-    _2010_sb = DecimalField(db_column='_2010_SB', null=True)
-    _2010_salary = DecimalField(db_column='_2010_Salary', null=True)
-    _2011_cap = DecimalField(db_column='_2011_Cap', null=True)
-    _2011_rb = DecimalField(db_column='_2011_RB', null=True)
-    _2011_sb = DecimalField(db_column='_2011_SB', null=True)
-    _2011_salary = DecimalField(db_column='_2011_Salary', null=True)
-    _2012_cap = DecimalField(db_column='_2012_Cap', null=True)
-    _2012_rb = DecimalField(db_column='_2012_RB', null=True)
-    _2012_sb = DecimalField(db_column='_2012_SB', null=True)
-    _2012_salary = DecimalField(db_column='_2012_Salary', null=True)
-    _2013_cap = DecimalField(db_column='_2013_Cap', null=True)
-    _2013_rb = DecimalField(db_column='_2013_RB', null=True)
-    _2013_sb = DecimalField(db_column='_2013_SB', null=True)
-    _2013_salary = DecimalField(db_column='_2013_Salary', null=True)
-    _2014_cap = DecimalField(db_column='_2014_Cap', null=True)
-    _2014_rb = DecimalField(db_column='_2014_RB', null=True)
-    _2014_sb = DecimalField(db_column='_2014_SB', null=True)
-    _2014_salary = DecimalField(db_column='_2014_Salary', null=True)
-    _2015_cap = DecimalField(db_column='_2015_Cap', null=True)
-    _2015_rb = DecimalField(db_column='_2015_RB', null=True)
-    _2015_sb = DecimalField(db_column='_2015_SB', null=True)
-    _2015_salary = DecimalField(db_column='_2015_Salary', null=True)
-    _2016_cap = DecimalField(db_column='_2016_Cap', null=True)
-    _2016_rb = DecimalField(db_column='_2016_RB', null=True)
-    _2016_sb = DecimalField(db_column='_2016_SB', null=True)
-    _2016_salary = DecimalField(db_column='_2016_Salary', null=True)
-    _2017_cap = DecimalField(db_column='_2017_Cap', null=True)
-    _2017_rb = DecimalField(db_column='_2017_RB', null=True)
-    _2017_sb = DecimalField(db_column='_2017_SB', null=True)
-    _2017_salary = DecimalField(db_column='_2017_Salary', null=True)
-    _2018_cap = DecimalField(db_column='_2018_Cap', null=True)
-    _2018_rb = DecimalField(db_column='_2018_RB', null=True)
-    _2018_sb = DecimalField(db_column='_2018_SB', null=True)
-    _2018_salary = DecimalField(db_column='_2018_Salary', null=True)
-    salary_data = PrimaryKeyField(db_column='salary_data_id')
-    team = CharField()
-
-    class Meta:
-        db_table = 'salary_data'
-
-
-class SalaryIn(BaseModel):
-    name = CharField(db_column='Name')
-    pos = CharField(db_column='POS')
-    _2006_cap = DecimalField(db_column='_2006_Cap', null=True)
-    _2006_rb = DecimalField(db_column='_2006_RB', null=True)
-    _2006_sb = DecimalField(db_column='_2006_SB', null=True)
-    _2006_salary = DecimalField(db_column='_2006_Salary', null=True)
-    _2007_cap = DecimalField(db_column='_2007_Cap', null=True)
-    _2007_rb = DecimalField(db_column='_2007_RB', null=True)
-    _2007_sb = DecimalField(db_column='_2007_SB', null=True)
-    _2007_salary = DecimalField(db_column='_2007_Salary', null=True)
-    _2008_cap = DecimalField(db_column='_2008_Cap', null=True)
-    _2008_rb = DecimalField(db_column='_2008_RB', null=True)
-    _2008_sb = DecimalField(db_column='_2008_SB', null=True)
-    _2008_salary = DecimalField(db_column='_2008_Salary', null=True)
-    _2009_cap = DecimalField(db_column='_2009_Cap', null=True)
-    _2009_rb = DecimalField(db_column='_2009_RB', null=True)
-    _2009_sb = DecimalField(db_column='_2009_SB', null=True)
-    _2009_salary = DecimalField(db_column='_2009_Salary', null=True)
-    _2010_cap = DecimalField(db_column='_2010_Cap', null=True)
-    _2010_rb = DecimalField(db_column='_2010_RB', null=True)
-    _2010_sb = DecimalField(db_column='_2010_SB', null=True)
-    _2010_salary = DecimalField(db_column='_2010_Salary', null=True)
-    _2011_cap = DecimalField(db_column='_2011_Cap', null=True)
-    _2011_rb = DecimalField(db_column='_2011_RB', null=True)
-    _2011_sb = DecimalField(db_column='_2011_SB', null=True)
-    _2011_salary = DecimalField(db_column='_2011_Salary', null=True)
-    _2012_cap = DecimalField(db_column='_2012_Cap', null=True)
-    _2012_rb = DecimalField(db_column='_2012_RB', null=True)
-    _2012_sb = DecimalField(db_column='_2012_SB', null=True)
-    _2012_salary = DecimalField(db_column='_2012_Salary', null=True)
-    _2013_cap = DecimalField(db_column='_2013_Cap', null=True)
-    _2013_rb = DecimalField(db_column='_2013_RB', null=True)
-    _2013_sb = DecimalField(db_column='_2013_SB', null=True)
-    _2013_salary = DecimalField(db_column='_2013_Salary', null=True)
-    _2014_cap = DecimalField(db_column='_2014_Cap', null=True)
-    _2014_rb = DecimalField(db_column='_2014_RB', null=True)
-    _2014_sb = DecimalField(db_column='_2014_SB', null=True)
-    _2014_salary = DecimalField(db_column='_2014_Salary', null=True)
-    _2015_cap = DecimalField(db_column='_2015_Cap', null=True)
-    _2015_rb = DecimalField(db_column='_2015_RB', null=True)
-    _2015_sb = DecimalField(db_column='_2015_SB', null=True)
-    _2015_salary = DecimalField(db_column='_2015_Salary', null=True)
-    _2016_cap = DecimalField(db_column='_2016_Cap', null=True)
-    _2016_rb = DecimalField(db_column='_2016_RB', null=True)
-    _2016_sb = DecimalField(db_column='_2016_SB', null=True)
-    _2016_salary = DecimalField(db_column='_2016_Salary', null=True)
-    _2017_cap = DecimalField(db_column='_2017_Cap', null=True)
-    _2017_rb = DecimalField(db_column='_2017_RB', null=True)
-    _2017_sb = DecimalField(db_column='_2017_SB', null=True)
-    _2017_salary = DecimalField(db_column='_2017_Salary', null=True)
-    _2018_cap = DecimalField(db_column='_2018_Cap', null=True)
-    _2018_rb = DecimalField(db_column='_2018_RB', null=True)
-    _2018_sb = DecimalField(db_column='_2018_SB', null=True)
-    _2018_salary = DecimalField(db_column='_2018_Salary', null=True)
-
-    class Meta:
-        db_table = 'salary_in'
+        db_table = 'stadium_player_positions'
 
 
 class PlayerSeasons(BaseModel):
@@ -801,3 +387,303 @@ class PlayerSeasons(BaseModel):
 
     class Meta:
         db_table = 'player_seasons'
+
+
+class Ratings(BaseModel):
+    name = CharField()
+    release_date = DateField()
+
+    class Meta:
+        db_table = 'ratings'
+
+
+class HofPlayers(BaseModel):
+    rk = IntegerField(db_column='Rk', null=True)
+    career_av = IntegerField(db_column='career_AV', null=True)
+    first_team_all_pros = IntegerField(null=True)
+    games = IntegerField(null=True)
+    inducted = IntegerField(null=True)
+    name = CharField(null=True)
+    passing_attempts = IntegerField(null=True)
+    passing_completions = IntegerField(null=True)
+    passing_interceptions = IntegerField(null=True)
+    passing_long = IntegerField(null=True)
+    passing_tds = IntegerField(null=True)
+    passing_yards = IntegerField(null=True)
+    played_from = IntegerField(null=True)
+    played_to = IntegerField(null=True)
+    position = CharField(null=True)
+    pro_bowls = IntegerField(null=True)
+    receiving_long = IntegerField(null=True)
+    receiving_tds = IntegerField(null=True)
+    receiving_yards = IntegerField(null=True)
+    receptions = IntegerField(null=True)
+    rushing_attempts = IntegerField(null=True)
+    rushing_long = IntegerField(null=True)
+    rushing_tds = IntegerField(null=True)
+    rushing_yards = IntegerField(null=True)
+    sacked = IntegerField(null=True)
+    sacked_yards = IntegerField(null=True)
+    starts = IntegerField(null=True)
+
+    class Meta:
+        db_table = 'hof_players'
+
+
+class Madden(BaseModel):
+    acceleration = IntegerField(null=True)
+    agility = IntegerField(null=True)
+    awareness = IntegerField(null=True)
+    breaktackle = IntegerField(null=True)
+    carrying = IntegerField(null=True)
+    catching = IntegerField(null=True)
+    firstname = CharField()
+    jerseynum = IntegerField()
+    jumping = IntegerField(null=True)
+    kickaccuracy = IntegerField(null=True)
+    kickpower = IntegerField(null=True)
+    lastname = CharField()
+    overallrating = IntegerField()
+    passblock = IntegerField(null=True)
+    position = CharField()
+    runblock = IntegerField(null=True)
+    speed = IntegerField(null=True)
+    strength = IntegerField(null=True)
+    tackle = IntegerField(null=True)
+    throwaccuracy = IntegerField(null=True)
+    throwpower = IntegerField(null=True)
+
+    class Meta:
+        db_table = 'madden'
+
+
+class MaddenRatings(BaseModel):
+    acceleration = IntegerField(null=True)
+    agility = IntegerField(null=True)
+    awareness = IntegerField(null=True)
+    breaktackle = IntegerField(null=True)
+    carrying = IntegerField(null=True)
+    catching = IntegerField(null=True)
+    firstname = CharField()
+    jerseynum = IntegerField()
+    jumping = IntegerField(null=True)
+    kickaccuracy = IntegerField(null=True)
+    kickpower = IntegerField(null=True)
+    lastname = CharField()
+    madden_rating = PrimaryKeyField(db_column='madden_rating_id')
+    overallrating = IntegerField()
+    passblock = IntegerField(null=True)
+    position = CharField()
+    runblock = IntegerField(null=True)
+    speed = IntegerField(null=True)
+    strength = IntegerField(null=True)
+    tackle = IntegerField(null=True)
+    team = CharField()
+    throwaccuracy = IntegerField(null=True)
+    throwpower = IntegerField(null=True)
+    year = IntegerField()
+
+    class Meta:
+        db_table = 'madden_ratings'
+
+
+class MockDraftPicks(BaseModel):
+    mock_draft = IntegerField(db_column='mock_draft_id')
+    mock_draft_pick = PrimaryKeyField(db_column='mock_draft_pick_id')
+    name = CharField(null=True)
+    position = CharField(null=True)
+    rank = IntegerField()
+    school = CharField(null=True)
+    team = CharField(null=True)
+    trade = CharField(null=True)
+
+    class Meta:
+        db_table = 'mock_draft_picks'
+
+
+class MockDrafts(BaseModel):
+    date = DateField(null=True)
+    mock_draft = PrimaryKeyField(db_column='mock_draft_id')
+    mocker = IntegerField(db_column='mocker_id', null=True)
+    source = TextField(null=True)
+    source_file = TextField(null=True)
+
+    class Meta:
+        db_table = 'mock_drafts'
+
+
+class Mockers(BaseModel):
+    email = CharField(null=True)
+    mocker = PrimaryKeyField(db_column='mocker_id')
+    name = CharField(null=True)
+    publication = CharField(null=True)
+    twitter = CharField(null=True)
+
+    class Meta:
+        db_table = 'mockers'
+
+
+class NepMadden2005(BaseModel):
+    acceleration = IntegerField(null=True)
+    agility = IntegerField(null=True)
+    awareness = IntegerField(null=True)
+    breaktackle = IntegerField(null=True)
+    carrying = IntegerField(null=True)
+    catching = IntegerField(null=True)
+    firstname = CharField()
+    jerseynum = IntegerField()
+    jumping = IntegerField(null=True)
+    kickaccuracy = IntegerField(null=True)
+    kickpower = IntegerField(null=True)
+    lastname = CharField()
+    overallrating = IntegerField()
+    passblock = IntegerField(null=True)
+    position = CharField()
+    runblock = IntegerField(null=True)
+    speed = IntegerField(null=True)
+    strength = IntegerField(null=True)
+    tackle = IntegerField(null=True)
+    throwaccuracy = IntegerField(null=True)
+    throwpower = IntegerField(null=True)
+
+    class Meta:
+        db_table = 'nep_madden_2005'
+
+
+class Salary(BaseModel):
+    cap = DecimalField(null=True)
+    name = CharField()
+    position = CharField()
+    roster_bonus = DecimalField(null=True)
+    salary = DecimalField(null=True)
+    salary = PrimaryKeyField(db_column='salary_id')
+    signing_bonus = DecimalField(null=True)
+    team = CharField()
+    year = IntegerField()
+
+    class Meta:
+        db_table = 'salary'
+
+
+class SalaryData(BaseModel):
+    name = CharField(db_column='Name')
+    pos = CharField(db_column='POS')
+    _2006_cap = DecimalField(db_column='_2006_Cap', null=True)
+    _2006_rb = DecimalField(db_column='_2006_RB', null=True)
+    _2006_sb = DecimalField(db_column='_2006_SB', null=True)
+    _2006_salary = DecimalField(db_column='_2006_Salary', null=True)
+    _2007_cap = DecimalField(db_column='_2007_Cap', null=True)
+    _2007_rb = DecimalField(db_column='_2007_RB', null=True)
+    _2007_sb = DecimalField(db_column='_2007_SB', null=True)
+    _2007_salary = DecimalField(db_column='_2007_Salary', null=True)
+    _2008_cap = DecimalField(db_column='_2008_Cap', null=True)
+    _2008_rb = DecimalField(db_column='_2008_RB', null=True)
+    _2008_sb = DecimalField(db_column='_2008_SB', null=True)
+    _2008_salary = DecimalField(db_column='_2008_Salary', null=True)
+    _2009_cap = DecimalField(db_column='_2009_Cap', null=True)
+    _2009_rb = DecimalField(db_column='_2009_RB', null=True)
+    _2009_sb = DecimalField(db_column='_2009_SB', null=True)
+    _2009_salary = DecimalField(db_column='_2009_Salary', null=True)
+    _2010_cap = DecimalField(db_column='_2010_Cap', null=True)
+    _2010_rb = DecimalField(db_column='_2010_RB', null=True)
+    _2010_sb = DecimalField(db_column='_2010_SB', null=True)
+    _2010_salary = DecimalField(db_column='_2010_Salary', null=True)
+    _2011_cap = DecimalField(db_column='_2011_Cap', null=True)
+    _2011_rb = DecimalField(db_column='_2011_RB', null=True)
+    _2011_sb = DecimalField(db_column='_2011_SB', null=True)
+    _2011_salary = DecimalField(db_column='_2011_Salary', null=True)
+    _2012_cap = DecimalField(db_column='_2012_Cap', null=True)
+    _2012_rb = DecimalField(db_column='_2012_RB', null=True)
+    _2012_sb = DecimalField(db_column='_2012_SB', null=True)
+    _2012_salary = DecimalField(db_column='_2012_Salary', null=True)
+    _2013_cap = DecimalField(db_column='_2013_Cap', null=True)
+    _2013_rb = DecimalField(db_column='_2013_RB', null=True)
+    _2013_sb = DecimalField(db_column='_2013_SB', null=True)
+    _2013_salary = DecimalField(db_column='_2013_Salary', null=True)
+    _2014_cap = DecimalField(db_column='_2014_Cap', null=True)
+    _2014_rb = DecimalField(db_column='_2014_RB', null=True)
+    _2014_sb = DecimalField(db_column='_2014_SB', null=True)
+    _2014_salary = DecimalField(db_column='_2014_Salary', null=True)
+    _2015_cap = DecimalField(db_column='_2015_Cap', null=True)
+    _2015_rb = DecimalField(db_column='_2015_RB', null=True)
+    _2015_sb = DecimalField(db_column='_2015_SB', null=True)
+    _2015_salary = DecimalField(db_column='_2015_Salary', null=True)
+    _2016_cap = DecimalField(db_column='_2016_Cap', null=True)
+    _2016_rb = DecimalField(db_column='_2016_RB', null=True)
+    _2016_sb = DecimalField(db_column='_2016_SB', null=True)
+    _2016_salary = DecimalField(db_column='_2016_Salary', null=True)
+    _2017_cap = DecimalField(db_column='_2017_Cap', null=True)
+    _2017_rb = DecimalField(db_column='_2017_RB', null=True)
+    _2017_sb = DecimalField(db_column='_2017_SB', null=True)
+    _2017_salary = DecimalField(db_column='_2017_Salary', null=True)
+    _2018_cap = DecimalField(db_column='_2018_Cap', null=True)
+    _2018_rb = DecimalField(db_column='_2018_RB', null=True)
+    _2018_sb = DecimalField(db_column='_2018_SB', null=True)
+    _2018_salary = DecimalField(db_column='_2018_Salary', null=True)
+    salary_data = PrimaryKeyField(db_column='salary_data_id')
+    team = CharField()
+
+    class Meta:
+        db_table = 'salary_data'
+
+
+class SalaryIn(BaseModel):
+    name = CharField(db_column='Name')
+    pos = CharField(db_column='POS')
+    _2006_cap = DecimalField(db_column='_2006_Cap', null=True)
+    _2006_rb = DecimalField(db_column='_2006_RB', null=True)
+    _2006_sb = DecimalField(db_column='_2006_SB', null=True)
+    _2006_salary = DecimalField(db_column='_2006_Salary', null=True)
+    _2007_cap = DecimalField(db_column='_2007_Cap', null=True)
+    _2007_rb = DecimalField(db_column='_2007_RB', null=True)
+    _2007_sb = DecimalField(db_column='_2007_SB', null=True)
+    _2007_salary = DecimalField(db_column='_2007_Salary', null=True)
+    _2008_cap = DecimalField(db_column='_2008_Cap', null=True)
+    _2008_rb = DecimalField(db_column='_2008_RB', null=True)
+    _2008_sb = DecimalField(db_column='_2008_SB', null=True)
+    _2008_salary = DecimalField(db_column='_2008_Salary', null=True)
+    _2009_cap = DecimalField(db_column='_2009_Cap', null=True)
+    _2009_rb = DecimalField(db_column='_2009_RB', null=True)
+    _2009_sb = DecimalField(db_column='_2009_SB', null=True)
+    _2009_salary = DecimalField(db_column='_2009_Salary', null=True)
+    _2010_cap = DecimalField(db_column='_2010_Cap', null=True)
+    _2010_rb = DecimalField(db_column='_2010_RB', null=True)
+    _2010_sb = DecimalField(db_column='_2010_SB', null=True)
+    _2010_salary = DecimalField(db_column='_2010_Salary', null=True)
+    _2011_cap = DecimalField(db_column='_2011_Cap', null=True)
+    _2011_rb = DecimalField(db_column='_2011_RB', null=True)
+    _2011_sb = DecimalField(db_column='_2011_SB', null=True)
+    _2011_salary = DecimalField(db_column='_2011_Salary', null=True)
+    _2012_cap = DecimalField(db_column='_2012_Cap', null=True)
+    _2012_rb = DecimalField(db_column='_2012_RB', null=True)
+    _2012_sb = DecimalField(db_column='_2012_SB', null=True)
+    _2012_salary = DecimalField(db_column='_2012_Salary', null=True)
+    _2013_cap = DecimalField(db_column='_2013_Cap', null=True)
+    _2013_rb = DecimalField(db_column='_2013_RB', null=True)
+    _2013_sb = DecimalField(db_column='_2013_SB', null=True)
+    _2013_salary = DecimalField(db_column='_2013_Salary', null=True)
+    _2014_cap = DecimalField(db_column='_2014_Cap', null=True)
+    _2014_rb = DecimalField(db_column='_2014_RB', null=True)
+    _2014_sb = DecimalField(db_column='_2014_SB', null=True)
+    _2014_salary = DecimalField(db_column='_2014_Salary', null=True)
+    _2015_cap = DecimalField(db_column='_2015_Cap', null=True)
+    _2015_rb = DecimalField(db_column='_2015_RB', null=True)
+    _2015_sb = DecimalField(db_column='_2015_SB', null=True)
+    _2015_salary = DecimalField(db_column='_2015_Salary', null=True)
+    _2016_cap = DecimalField(db_column='_2016_Cap', null=True)
+    _2016_rb = DecimalField(db_column='_2016_RB', null=True)
+    _2016_sb = DecimalField(db_column='_2016_SB', null=True)
+    _2016_salary = DecimalField(db_column='_2016_Salary', null=True)
+    _2017_cap = DecimalField(db_column='_2017_Cap', null=True)
+    _2017_rb = DecimalField(db_column='_2017_RB', null=True)
+    _2017_sb = DecimalField(db_column='_2017_SB', null=True)
+    _2017_salary = DecimalField(db_column='_2017_Salary', null=True)
+    _2018_cap = DecimalField(db_column='_2018_Cap', null=True)
+    _2018_rb = DecimalField(db_column='_2018_RB', null=True)
+    _2018_sb = DecimalField(db_column='_2018_SB', null=True)
+    _2018_salary = DecimalField(db_column='_2018_Salary', null=True)
+
+    class Meta:
+        db_table = 'salary_in'
+
+
