@@ -1,6 +1,19 @@
 from peewee import *
+from MySQLdb.cursors import SSCursor
+import os
 
-database = MySQLDatabase('nfl', **{'host': 'localhost', 'password': 'bOVE3kKsVpRq57eums8D', 'user': 'nfl_user'})
+if (os.getenv('SERVER_SOFTWARE') and
+    os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
+    instance_name = 'instance_name'
+    database = MySQLDatabase('nfl',
+                             unix_socket='/cloudsql/{}'.format(instance_name),
+                             user='root')
+else:
+    database = MySQLDatabase('nfl',
+                             **{'host': 'localhost',
+                                'password': 'bOVE3kKsVpRq57eums8D',
+                                'user': 'nfl_user',
+                                'cursorclass': SSCursor})
 
 
 class UnknownField(object):
@@ -25,12 +38,12 @@ class Stadium(BaseModel):
 
     def best_players_at(self, pos):
         q = (StadiumPlayerPosition
-                .select()
-                .join(Position)
-                .where(
-                    (StadiumPlayerPosition.stadium == self.stadium) &
-                    (Position.name == pos))
-                .order_by(StadiumPlayerPosition.order.asc()))
+             .select()
+             .join(Position)
+             .where(
+                 (StadiumPlayerPosition.stadium == self.stadium) &
+                 (Position.name == pos))
+             .order_by(StadiumPlayerPosition.order.asc()))
         return [spp.player_t for spp in q]
 
     def abbr(self):
@@ -700,3 +713,31 @@ class SalaryIn(BaseModel):
         db_table = 'salary_in'
 
 
+class EspnRosterPlayer(BaseModel):
+    espn_roster_player = PrimaryKeyField(db_column='espn_roster_player_id')
+    age = CharField()
+    college = CharField()
+    exp = IntegerField()
+    ht = IntegerField()
+    name = CharField()
+    no = IntegerField()
+    pos = CharField()
+    team = CharField()
+    wt = IntegerField()
+
+    class Meta:
+        db_table = 'espn_roster_players'
+
+
+class EspnDepthPosition(BaseModel):
+    team = CharField()
+    second = CharField()
+    third = CharField()
+    fourth = CharField()
+    espn_depth_position = PrimaryKeyField(db_column='espn_depth_position_id')
+    formation = CharField()
+    position = CharField()
+    starter = CharField()
+
+    class Meta:
+        db_table = 'espn_depth_positions'
