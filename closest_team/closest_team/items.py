@@ -41,3 +41,17 @@ class PlayerPosItem(Item):
     def __setitem__(self, key, value):
         self._values[key] = value
         self.fields[key] = {}
+
+
+class RosterItem(Item):
+
+    def __setitem__(self, key, value):
+        self._values[key] = value
+        self.fields[key] = {}
+
+
+class DepthItem(Item):
+
+    def __setitem__(self, key, value):
+        self._values[key] = value
+        self.fields[key] = {}

@@ -20,7 +20,7 @@ if ENV == 'development':
     HTTPCACHE_ENABLED = True
     HTTPCACHE_POLICY = 'scrapy.contrib.httpcache.DummyPolicy'
     # EXTENSIONS['scrapy.contrib.closespider.CloseSpider'] = 500
-    # CLOSESPIDER_PAGECOUNT = 100
+    # CLOSESPIDER_PAGECOUNT = 20
 
 DOWNLOAD_DELAY = 1
 COOKIES_ENABLED = False
