@@ -64,3 +64,5 @@ csv/
 .scrapy/
 Session.vim
 ignore/
+*.json
+lib/
