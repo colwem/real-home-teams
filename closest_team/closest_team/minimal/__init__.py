@@ -48,6 +48,8 @@ def players():
 @app.route('/voronoi')
 def voronoi():
     stadiums = m.Stadium.select()
+    for s in stadiums:
+        print s
     t = render_template('voronoi.html', stadiums=stadiums)
     return t
 

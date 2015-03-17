@@ -26,12 +26,8 @@ path {
 
 @region-fill-opacity: 0.5;
 .voronoi {
-  &:hover {
-    fill-opacity: @region-fill-opacity + 0.05;
-  }
   fill-opacity: @region-fill-opacity;
-  pointer-events: painted;
-  transition: fill-opacity 300ms ease;
+  /* pointer-events: all; */
   cursor: grabbing;
 }
 
@@ -51,8 +47,12 @@ path {
   stroke: white;
   stroke-width: 0.5;
   stroke-opacity: 0.5;
-  fill: black;
-  fill-opacity: 0.5;
+  fill: darkblue;
+  fill-opacity: 0.4;
+  transition: fill-opacity 300ms ease;
+  &:hover {
+    fill-opacity: 0.9;
+  }
 }
 
 .stadium {

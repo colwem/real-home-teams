@@ -1,4 +1,4 @@
-application: hello-flask-app-engine
+application: future-glider-87801
 version: 1
 runtime: python27
 api_version: 1
@@ -17,3 +17,15 @@ libraries:
   version: "2.6"
 - name: markupsafe
   version: "0.15"
+- name: MySQLdb
+  version: "latest"
+
+skip_files:
+- ^(.*/)?.*~$
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?\..*$
+- ^(.*/)?.*\.log$
+- ^env$
+- ^csv$
+- ^spiders$
+- ^Session.vim$

@@ -1,10 +1,9 @@
 from peewee import *
-from MySQLdb.cursors import SSCursor
 import os
 
 if (os.getenv('SERVER_SOFTWARE') and
     os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
-    instance_name = 'instance_name'
+    instance_name = 'future-glider-87801:nfl'
     database = MySQLDatabase('nfl',
                              unix_socket='/cloudsql/{}'.format(instance_name),
                              user='root')
@@ -12,8 +11,7 @@ else:
     database = MySQLDatabase('nfl',
                              **{'host': 'localhost',
                                 'password': 'bOVE3kKsVpRq57eums8D',
-                                'user': 'nfl_user',
-                                'cursorclass': SSCursor})
+                                'user': 'nfl_user', })
 
 
 class UnknownField(object):
