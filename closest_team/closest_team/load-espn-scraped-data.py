@@ -4,11 +4,17 @@ from tablemaker import Table
 import json
 
 
+def monkeypatch(cls):
+    def decorator(func):
+        setattr(cls, func.__name__, func)
+        return func
+    return decorator
+
+
+@monkeypatch(file)
 def jsonlines(self):
     for l in self.readlines():
         yield json.loads(l)
-
-file.jsonlines = jsonlines
 
 roster = Table('espn_roster_players')
 depth = Table('espn_depth_positions')
