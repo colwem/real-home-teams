@@ -3,7 +3,7 @@ from datetime import datetime
 from playhouse.shortcuts import model_to_dict
 import sys
 
-for p in PlayersT.select().iterator():
+for p in Player.select().iterator():
     try:
         p.birthday_date = datetime.strptime(p.birthday, "%B %d, %Y")
     except ValueError, e:

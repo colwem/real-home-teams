@@ -11,7 +11,7 @@ cur_y = ps.select(fn.Max(ps.year).alias('max')).first().max
 
 p = 0.4
 scale = scaler(p, cur_y)
-for player in PlayersT.select():
+for player in Player.select():
     t = 0
     for s in player.seasons():
         t += scale(s.av, s.year)

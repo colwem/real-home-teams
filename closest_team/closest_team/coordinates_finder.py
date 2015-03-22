@@ -15,7 +15,7 @@ gl = GeoNames(username='colwem', timeout=5)
 fmt = "{}, {}"
 
 def problem(s):
-    print '{}\t{}, {}'.format(s.high_school_t, s.city, s.state)
+    print '{}\t{}, {}'.format(s.high_school, s.city, s.state)
 
 
 def loop(q):
@@ -45,11 +45,11 @@ def loop(q):
             sleep(60 * 5)
     return retry
 
-query = HighSchoolT.select().where(
-    HighSchoolT.state != None,
-    HighSchoolT.city != None,
-    HighSchoolT.latitude == None,
-    HighSchoolT.longitude == None)
+query = HighSchool.select().where(
+    HighSchool.state != None,
+    HighSchool.city != None,
+    HighSchool.latitude == None,
+    HighSchool.longitude == None)
 
 print query.sql()
 

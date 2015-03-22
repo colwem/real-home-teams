@@ -1,7 +1,5 @@
-select p.college
-from players_t p
-	join player_seasons ps on ps.player_id = p.player_t_id
-where ps.year = 2014;
+DROP TABLE IF EXISTS `espn_depth_positions`;
+DROP TABLE IF EXISTS `espn_roster_players`;
 
 CREATE TABLE `espn_roster_players` (
 `espn_roster_player_id` INTEGER AUTO_INCREMENT PRIMARY KEY,
@@ -25,21 +23,35 @@ CREATE TABLE `espn_depth_positions` (
 `third`                   VARCHAR(20) DEFAULT NULL,
 `fourth`                   VARCHAR(20) DEFAULT NULL);
 
-DROP TABLE `espn_depth_positions`;
-DROP TABLE `espn_roster_players`;
+create index ps_player_id_uniform_number_idx on player_seasons (player_id, uniform_number);
+create index erp_name_idx on espn_roster_players (name);
+create index p_name_idx on players_t (name);
 
-select count(*) 
-from espn_roster_players
-where pos = 'DB';
+update players_t set pos = null;
+alter table players_t add column active bool default false;
 
-select * 
+update players_t p1
+	join (	select distinct rp.pos as `pos`, rp.name, p.player_t_id as `id`
+			from espn_roster_players rp 
+				join players_t p 
+					on p.name = rp.name
+				join player_seasons ps 
+					on ps.player_id = p.player_t_id 
+						and ps.uniform_number = rp.no) jp
+		on jp.id = p1.player_t_id
+set p1.pos = jp.pos,
+	p1.active = true;
+    
+select name, pos, weighted_av
 from players_t
-where name like "%Peterson%";
+where active is true
+order by weighted_av desc;
 
-select *
-from player_seasons
-where player_id = 1046;
+select ps.*
+from player_seasons ps
+	join players_t p on p.player_t_id = ps.player_id
+where p.name = 'Adrian Peterson';
 
-select * 
+select distinct pos
 from players_t
-limit 100;
+order by pos;

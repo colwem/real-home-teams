@@ -14,13 +14,13 @@ def scaler(p, year):
     return lambda av, y: av * pmf(p, year - y)
 
 ps = PlayerSeasons
-pl = PlayersT
+pl = Player
 cur_y = ps.select(fn.Max(ps.year).alias('max')).first().max
 
 
 q = (pl.select(pl, ps)
      .join(ps)
-     .where((ps.av != None) & (ps.year != None))
+     .where((ps.av != None) & (ps.year != None) & (pl.active == True))
      .order_by(pl.birthday_date.desc)
      .aggregate_rows())
 

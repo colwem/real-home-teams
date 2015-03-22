@@ -1,5 +1,10 @@
 from peewee import *
 import os
+import logging
+
+logger = logging.getLogger('peewee')
+logger.setLevel(logging.DEBUG)
+logger.addHandler(logging.FileHandler('peewee.log', mode='w'))
 
 if (os.getenv('SERVER_SOFTWARE') and
     os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
@@ -8,10 +13,14 @@ if (os.getenv('SERVER_SOFTWARE') and
                              unix_socket='/cloudsql/{}'.format(instance_name),
                              user='root')
 else:
+    # database = MySQLDatabase('nfl',
+                             # **{'host': 'localhost',
+                                # 'password': 'bOVE3kKsVpRq57eums8D',
+                                # 'user': 'nfl_user', })
     database = MySQLDatabase('nfl',
                              **{'host': 'localhost',
-                                'password': 'bOVE3kKsVpRq57eums8D',
-                                'user': 'nfl_user', })
+                                'password': '',
+                                'user': 'root', })
 
 
 class UnknownField(object):
@@ -35,14 +44,18 @@ class Stadium(BaseModel):
         db_table = 'stadiums'
 
     def best_players_at(self, pos):
-        q = (StadiumPlayerPosition
+
+        q = (Player
              .select()
-             .join(Position)
-             .where(
-                 (StadiumPlayerPosition.stadium == self.stadium) &
-                 (Position.name == pos))
-             .order_by(StadiumPlayerPosition.order.asc()))
-        return [spp.player_t for spp in q]
+             .join(HighSchool)
+             .join(Stadium, on=HighSchool.closest_stadium)
+             .where((Player.pos == pos)
+                    & (Player.active == True)
+                    & (Stadium.stadium == self))
+             .order_by(Player.weighted_av.desc())
+             .limit(3))
+
+        return [p for p in q]
 
     def abbr(self):
         return Team.select().where(Team.stadium == self.stadium)[0].abbr
@@ -69,9 +82,8 @@ class Position(BaseModel):
     class Meta:
         db_table = 'positions'
 
-
-class HighSchoolT(BaseModel):
-    high_school_t = PrimaryKeyField(db_column='high_school_t_id')
+class HighSchool(BaseModel):
+    high_school = PrimaryKeyField(db_column='high_school_id')
     closest_stadium = ForeignKeyField(
         Stadium,
         related_name='schools',
@@ -86,38 +98,39 @@ class HighSchoolT(BaseModel):
     longitude = FloatField(null=True)
 
     class Meta:
-        db_table = 'high_school_t'
+        db_table = 'high_schools'
 
 
-class PlayersT(BaseModel):
-    player_t = PrimaryKeyField(db_column='player_t_id')
+class Player(BaseModel):
+    player = PrimaryKeyField(db_column='player_id')
     pfr_high_school = ForeignKeyField(
-        HighSchoolT,
-        related_name='players',
+        HighSchool,
+        related_name='pfr_players',
         to_field='pfr_high_school_id')
-    high_school_t = ForeignKeyField(
-        HighSchoolT,
-        related_name='players_t')
+    high_school = ForeignKeyField(
+        HighSchool,
+        related_name='players')
     birthday = CharField(null=True)
     birthplace = CharField(null=True)
     birth_city = CharField(null=True)
     birth_state = CharField(null=True)
     college = CharField(null=True)
-    high_school = CharField(null=True)
+    high_school_name = CharField(null=True)
     name = CharField(null=True)
     pfr_player_id = CharField(null=True)
     url = CharField(null=True)
     birthday_date = DateField(null=True)
     weighted_av = FloatField(null=True)
     pos = CharField(null=True)
+    active = BooleanField()
 
     class Meta:
-        db_table = 'players_t'
+        db_table = 'players'
 
 
 class StadiumPlayerPosition(BaseModel):
     stadium_player_position = PrimaryKeyField(db_column='stadium_player_position_id')
-    player_t = ForeignKeyField(PlayersT)
+    player = ForeignKeyField(Player)
     stadium = ForeignKeyField(Stadium)
     position = ForeignKeyField(Position)
     order = IntegerField(null=True, db_column='ord')
@@ -128,7 +141,7 @@ class StadiumPlayerPosition(BaseModel):
 
 class PlayerSeasons(BaseModel):
     player_seasons = PrimaryKeyField(db_column='player_seasons_id')
-    player = ForeignKeyField(PlayersT, related_name='seasons')
+    player = ForeignKeyField(Player, related_name='seasons')
     pfr_player_id = CharField(null=True)
     year = IntegerField(null=True)
     av = IntegerField(null=True)

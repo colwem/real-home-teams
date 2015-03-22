@@ -15,14 +15,14 @@ def hello_world():
 
 @app.route('/map')
 def player():
-    p, hs = m.PlayersT, m.HighSchoolT
+    p, hs = m.Player, m.HighSchool
     p = p.select(
         p.name,
-        m.HighSchoolT.latitude,
-        m.HighSchoolT.longitude).join(
-        m.HighSchoolT).where(
-            m.HighSchoolT.latitude != None,
-            m.HighSchoolT.longitude != None).naive().limit(10)
+        m.HighSchool.latitude,
+        m.HighSchool.longitude).join(
+        m.HighSchool).where(
+            m.HighSchool.latitude != None,
+            m.HighSchool.longitude != None).naive().limit(10)
     s = m.Stadium.select()
     t = render_template('players.html', players=p, stadiums=s)
     return t
@@ -30,10 +30,10 @@ def player():
 
 @app.route('/players.json')
 def players():
-    p, hs = m.PlayersT, m.HighSchoolT
+    p, hs = m.Player, m.HighSchool
     q = (p.select(p.name, p.weighted_av, hs.latitude, hs.longitude)
          .join(hs)
-         .where(hs.latitude != None, hs.longitude != None, p.weighted_av > 0.1)
+         .where(hs.latitude != None, hs.longitude != None, p.active == True)
          .order_by(p.weighted_av)
          .naive())
          #.limit(1000))
@@ -64,16 +64,11 @@ def stadiums():
              "abbr": s.teams[0].abbr,
              "pri_color": s.teams[0].pri_color,
              "sec_color": s.teams[0].sec_color,
-             "coordinates": [s.longitude, s.latitude],
-             "av": randint(80,120)})
+             "coordinates": [s.longitude, s.latitude]})
     stadiums.sort(key=lambda a: a['abbr'])
     # import pdb; pdb.set_trace()
     json = {"stadiums": stadiums}
     return jsonify(json)
-# @app.route('/player-map')
-# def player_map():
-    # PlayerT.select(PlayerT.name, PlayerT.high_school
-
 
 if __name__ == '__main__':
     app.debug = True

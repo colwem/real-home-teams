@@ -6,15 +6,15 @@ logger = logging.getLogger('peewee')
 logger.setLevel(logging.DEBUG)
 logger.addHandler(logging.FileHandler('peewee.log', mode='w'))
 
-pt = PlayersT
-hs = HighSchoolT
+pt = Player
+hs = HighSchool
 s = Stadium
 
 
 sql = '''
 select p.*
-from players_t p
-    join high_school_t hs on hs.high_school_t_id = p.high_school_t_id
+from players p
+    join high_schools hs on hs.high_school_id = p.high_school_id
     join stadiums s on s.stadium_id = hs.closest_stadium_id
 where p.pos like '%{position}%'
     and s.stadium_id = '{stadium_id}'

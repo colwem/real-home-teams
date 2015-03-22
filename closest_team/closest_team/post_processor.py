@@ -6,22 +6,22 @@ import sys
 
 db = database
 
-# query = PlayersT.select(
-    # PlayersT.pfr_high_school,
-    # HighSchoolT.pfr_high_school_id
+# query = Player.select(
+    # Player.pfr_high_school,
+    # HighSchool.pfr_high_school_id
 # ).join(
-    # HighSchoolT).limit(10)
+    # HighSchool).limit(10)
 
 # for q in query.execute():
     # print q
 
-query = PlayersT.select(
-    PlayersT.birthplace,
-    PlayersT.player_t).where(
-        PlayersT.birthday != '',
-        PlayersT.birthday != None,
-        PlayersT.birthplace != '',
-        PlayersT.birthplace != None)
+query = Player.select(
+    Player.birthplace,
+    Player.player).where(
+        Player.birthday != '',
+        Player.birthday != None,
+        Player.birthplace != '',
+        Player.birthplace != None)
 
 print query.sql()
 pat = re.compile(r'\s*,\s*')

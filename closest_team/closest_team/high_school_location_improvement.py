@@ -10,11 +10,11 @@ logging.basicConfig(filename='hsli.log', level=logging.DEBUG)
 logging.debug('starting')
 
 sql = '''select *, concat(name, " high school, ", city, " ", state) as `search`
-         from high_school_t
+         from high_schools
          where full_address is null
          order by state'''
 logging.debug("sql: " + sql)
-query = HighSchoolT.raw(sql)
+query = HighSchool.raw(sql)
 
 
 def run(hs):

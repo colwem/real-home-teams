@@ -3,8 +3,8 @@ from models import *
 import sys
 
 stadiums = list(Stadium.select())
-schools = HighSchoolT.select().where(HighSchoolT.latitude != None,
-                                     HighSchoolT.longitude != None)
+schools = HighSchool.select().where(HighSchool.latitude != None,
+                                     HighSchool.longitude != None)
 for school in schools:
     min_d = 999999999
     min_stadium = None

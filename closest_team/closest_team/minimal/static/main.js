@@ -155,7 +155,7 @@ function zoomed() {
       var r = b + c*Math.log(d.weighted_av + 1); 
       return r;
     }) 
-    .style("stroke-width", 0.5 / zoom.scale() + "px")
+    .style("stroke-width", "1.5px")
     .attr("transform", function(d) {
       var p = projection(d.coordinates);
       return "translate(" + [p[0], p[1]] + ")";

@@ -9,7 +9,7 @@ info = logging.info
 warn = logging.warning
 
 db = database
-pt = PlayersT
+pt = Players
 
 with db.transaction() as t:
     with open('playerpos.json', 'r') as fh:

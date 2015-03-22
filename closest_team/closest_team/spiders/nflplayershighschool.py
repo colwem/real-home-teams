@@ -49,7 +49,7 @@ class NflPlayersHighschool(CrawlSpider):
         id_  = re.search(r'([^/]*)\.htm', response.url)
         if id_:
             id_ = id_.group(1)
-
+        import ipdb; ipdb.set_trace()
         n = sel.xpath('//h1//text()')
         if n:
             name = n[0].extract()
