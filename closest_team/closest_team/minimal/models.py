@@ -96,6 +96,7 @@ class HighSchool(BaseModel):
     pfr_high_school_id = CharField(null=True, unique=True)
     latitude = FloatField(null=True)
     longitude = FloatField(null=True)
+    found = BooleanField()
 
     class Meta:
         db_table = 'high_schools'
@@ -103,10 +104,6 @@ class HighSchool(BaseModel):
 
 class Player(BaseModel):
     player = PrimaryKeyField(db_column='player_id')
-    pfr_high_school = ForeignKeyField(
-        HighSchool,
-        related_name='pfr_players',
-        to_field='pfr_high_school_id')
     high_school = ForeignKeyField(
         HighSchool,
         related_name='players')

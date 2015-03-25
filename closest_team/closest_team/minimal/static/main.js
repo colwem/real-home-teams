@@ -4,9 +4,9 @@
 var mapid = "mapbox.light",
     access_token = "pk.eyJ1IjoiY29sd2VtIiwiYSI6InpSV2NIT3MifQ.yiyrrpmxhNt6DJZDynUdmA";
 
-var player_tooltip = d3.select("body")
+var high_school_tooltip = d3.select("body")
     .append("div")
-    .attr("id", "player-tooltip");
+    .attr("id", "high-school-tooltip");
 
 var width = 960,
     height = 500;
@@ -43,10 +43,10 @@ var voronoi_paths = svg
   .attr("id", "voronoi")
   .selectAll(".voronoi");
 
-var player_circles = svg
+var high_school_circles = svg
   .append("g")
-  .attr("id", "players")
-  .selectAll(".player");
+  .attr("id", "high-schools")
+  .selectAll(".high-school");
 
 var stadium_logos = svg
   .append("g")
@@ -62,9 +62,9 @@ zoomed();
   // });
 // svg.call(player_tip);
 
-d3.json( "players.json", function(error, players) {
+d3.json( "high_schools.json", function(error, high_schools) {
   d3.json("stadiums.json", function(error, stadiums) {
-    ready(error, players, stadiums);
+    ready(error, high_schools, stadiums);
   });
 });
 
@@ -75,9 +75,9 @@ d3.json( "players.json", function(error, players) {
     // .await(ready);
 
 
-function ready(error, players, stadiums) {
+function ready(error, high_schools, stadiums) {
   stadiums = stadiums.stadiums;
-  players = players.players;
+  high_schools = high_schools.high_schools;
 
   var delaunay = d3.geo.delaunay(stadiums.map(function(d) { 
             return d.coordinates; 
@@ -95,14 +95,14 @@ function ready(error, players, stadiums) {
   voronoi_paths = d3.selectAll(".voronoi");
     // .on("click", stadium_tip.show);
 
-  player_circles
-    .data(players)
+  high_school_circles
+    .data(high_schools)
     .enter().insert("circle")
-    .attr("class", "player")
-    .on("mouseover", playerMouseover)
-    .on("mouseout", playerMouseout);
+    .attr("class", "high-school")
+    .on("mouseover", highSchoolMouseover)
+    .on("mouseout", highSchoolMouseout);
 
-  player_circles = d3.selectAll(".player");
+  high_school_circles = d3.selectAll(".high-school");
 
   stadium_logos
     .data(stadiums)
@@ -150,9 +150,9 @@ function zoomed() {
       c =  2, 
       b =  2;
 
-  player_circles
+  high_school_circles
     .attr("r", function(d) { 
-      var r = b + c*Math.log(d.weighted_av + 1); 
+      var r = b + c*Math.log(d.av + 1); 
       return r;
     }) 
     .style("stroke-width", "1.5px")
@@ -197,17 +197,29 @@ function zoomed() {
 
 }
 
-function playerMouseover(d) {
+function highSchoolMouseover(d) {
 
-  player_tooltip
+  high_school_tooltip
     .style("display", "inline-block");
-  player_tooltip
+  high_school_tooltip
     .transition()
     .duration(100)
     .style("opacity", 0.9);
-  player_tooltip.html(d.name)
+  high_school_tooltip.html(hSTooltipContent(d))
     .style("left", d3.event.pageX - 100 + "px")
-    .style("top", d3.event.pageY - 40 + "px");
+    .style("top", d3.event.pageY - 140 + "px");
+}
+
+function hSTooltipContent(d) {
+  html = '<div class="title"><span class="name">' + d.name + '</span><span class="value">' + d.av.toFixed(1) + "</div>";
+  html += "<div><h6>Players</h6>";
+  d.players.forEach( function(p) {
+    html += "<div>";
+    html += '<span class="name">' + p.name + '</span><span class="value">' + p.weighted_av.toFixed(1) + "</span>";
+    html += "</div>";
+  });
+  html += "</div>";
+  return html;
 }
 
 var block;
@@ -229,8 +241,8 @@ function stadiumClose(d) {
   block.style('display', 'none');
 }
 
-function playerMouseout(d) {
-  player_tooltip
+function highSchoolMouseout(d) {
+  high_school_tooltip
     .transition()
     .duration(100)
     .style("opacity", 0)

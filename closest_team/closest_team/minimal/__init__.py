@@ -28,6 +28,28 @@ def player():
     return t
 
 
+@app.route('/high_schools.json')
+def high_schools():
+    P, HS = m.Player, m.HighSchool
+
+    q = (HS.select(HS, P)
+         .join(P)
+         .where(HS.found == True, P.active == True)
+         .order_by(HS.high_school, P.weighted_av.desc())
+         .aggregate_rows())
+
+    json = []
+    for hs in q:
+        players = [{"name": p.name,
+                    "weighted_av": p.weighted_av}
+                   for p in hs.players]
+        if players:
+            json.append({"name": hs.name,
+                         "coordinates": [hs.longitude, hs.latitude],
+                         "av": sum([p["weighted_av"] for p in players]),
+                         "players": players})
+    return jsonify({"high_schools": json})
+
 @app.route('/players.json')
 def players():
     p, hs = m.Player, m.HighSchool
